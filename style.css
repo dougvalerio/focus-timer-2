@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #FFF;
+    --text-color: #323238;
+    --card: #E1E1E6;
+    --card-activated: #02799D;
+
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    font-family: 'Roboto', sans-serif;
+
+    display: grid;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 19.2rem;
+
+}
+
+.hide {
+    display: none;
+}
+
+.left {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 4.8rem;
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+}
+
+.time span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12.6rem;
+    line-height: 14.8rem;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 4.0rem;
+}
+
+.controls button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    opacity: 0.8;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 3.2rem;
+}
+
+.florest {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+  
+.rain {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+}
+  
+.coffeshop {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+  
+.fireplace {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+.cards button {
+    width: 13.8rem;
+    height: 15.2rem;
+
+    background-color: var(--card);
+    border: none;
+    border-radius: 2.4rem;
+    cursor: pointer;
+}
+
+.cards button.activated {
+    background-color: var(--card-activated);
+}
+
+.cards button.activated svg path{
+    fill: #FFFFFF; 
+}
+
+.cards button:hover {
+    border: 3px solid var(--text-color);
+}
+
+@media (max-width: 850px) {
+  main {
+    flex-direction: column;
+    gap: 3rem;
+  }  
+}
+  
+  
+  
+  
+  
+  
+  
