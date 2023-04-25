@@ -13,16 +13,43 @@
     font-size: 62.5%;
 }
 
+.dark-mode:root {
+    --bg-color: #121214;
+    --text-color: #FFF;
+    --card: #29292E;
+    --card-activated: #0A3442;
+
+    font-size: 62.5%;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
 
     font-family: 'Roboto', sans-serif;
 
-    display: grid;
+    display: flex;
     min-height: 100vh;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    margin: 6rem 30rem 0 0;
+
+    min-width: 100vw;
+}
+
+header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+header button:hover {
+    opacity: 0.8;
 }
 
 main {
@@ -31,6 +58,7 @@ main {
     align-items: center;
     gap: 19.2rem;
 
+    margin-top: 8.2rem;
 }
 
 .hide {
@@ -72,6 +100,10 @@ main {
     opacity: 0.8;
 }
 
+.controls button svg path {
+    fill: var(--text-color);
+}
+
 .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -109,6 +141,14 @@ main {
     cursor: pointer;
 }
 
+.cards button svg {
+    margin-bottom: 2.2rem;
+}
+
+.cards button svg path{
+    fill: var(--text-color); 
+}
+
 .cards button.activated {
     background-color: var(--card-activated);
 }
@@ -121,11 +161,77 @@ main {
     border: 3px solid var(--text-color);
 }
 
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 8rem;
+  }
+  
+  /* Removes default focus */
+  input[type="range"]:focus {
+    outline: none;
+  }
+  
+  /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+  /* slider track */
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: var(--text-color);
+    border-radius: 0.5rem;
+    height: .4rem;
+  }
+  
+  /* slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -6px; /* Centers thumb on the track */
+    background-color: var(--text-color);
+    border-radius: 1rem;
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+
+  /*********** Firefox styles ***********/
+  /* slider track */
+  input[type="range"]::-moz-range-track {
+    background-color: var(--text-color);
+    border-radius: 0.5rem;
+    height: 4px;
+  }
+  
+  /* slider thumb */
+  input[type="range"]::-moz-range-thumb {
+    background-color: var(--text-color);
+    border: none; /*Removes extra border that FF applies*/
+    border-radius: 1rem;
+    height: 16px;
+    width: 16px;
+  }
+
+  .cards button.activated input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #FFF;
+  }
+
+  .cards button.activated input[type="range"]::-webkit-slider-thumb {
+    background-color: #FFF;
+}
+
 @media (max-width: 850px) {
-  main {
-    flex-direction: column;
-    gap: 3rem;
-  }  
+    header {
+        justify-content: center;
+        margin: 0;
+
+        margin-top: 5rem;
+    }
+    main {
+        flex-direction: column;
+        gap: 3rem;
+
+        margin-top: 2rem;
+    }  
 }
   
   

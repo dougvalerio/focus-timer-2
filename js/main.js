@@ -1,3 +1,8 @@
+const htmlMode = document.querySelector('html')
+
+const buttonSun = document.querySelector('.sun')
+const buttonMoon = document.querySelector('.moon')
+
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 
@@ -17,9 +22,27 @@ const rainAudio = new Audio('./songs/Chuva.wav')
 const coffeshopAudio = new Audio('./songs/Cafeteria.wav')
 const fireplaceAudio = new Audio('./songs/Lareira.wav')
 
+const volumeControls = document.querySelectorAll('.volume-control')
+
+let currentCard = null
+let currentAudio = null
 let isPlaying = false
 
 let minutesTime = Number(minutesDisplay.textContent)
+
+buttonSun.addEventListener('click', function() {
+    buttonSun.classList.add('hide')
+    buttonMoon.classList.remove('hide')
+
+    htmlMode.classList.toggle('dark-mode')
+})
+
+buttonMoon.addEventListener('click', function() {
+    buttonMoon.classList.add('hide')
+    buttonSun.classList.remove('hide')
+
+    htmlMode.classList.toggle('dark-mode')
+})
 
 function countdown() {
     timer = setTimeout(function() {
@@ -92,18 +115,47 @@ buttonMinus.addEventListener('click', function() {
 })
 
 function cardToggle(card, audio) {
-    card.classList.toggle('activated');
+    card.classList.toggle('activated')
 
     audio.loop = true
 
-    if (isPlaying) {
-        audio.pause()
-    } else {
-        audio.play()
+    if (card !== currentCard) {
+        
+        if (currentCard !== null) {
+          currentCard.classList.remove("activated")
+        }
+
+        card.classList.add("activated")
+        currentCard = card
     }
 
-    isPlaying = !isPlaying;
+    if (currentAudio !== null && currentAudio !== audio) {
+        currentAudio.pause()
+        isPlaying = false
+    }
+
+    if (isPlaying && currentAudio === audio) {
+        audio.pause()
+        isPlaying = false
+    } else {
+        audio.play()
+        isPlaying = true
+    }
+
+    currentAudio = audio
+    
+    const volume = document.getElementById(`${card.id}-volume`)
+   
+    volume.addEventListener("input", function() {
+        audio.volume = volume.value / 100
+      })
 }
+
+volumeControls.forEach(test => {
+    test.addEventListener("click", function(event) {
+        event.stopPropagation()
+    })
+})
 
 cardFlorest.addEventListener('click', function() {
     cardToggle(cardFlorest, florestAudio)   
